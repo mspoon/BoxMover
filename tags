@@ -1,0 +1,61 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CC	Makefile	/^CC=g++ $(CFLAGS)$/;"	m
+CFLAGS	Makefile	/^CFLAGS=-Wall -std=c++0x `sdl2-config --cflags`$/;"	m
+Component	Component.h	/^	class Component {$/;"	c	namespace:arcadia
+EXECUTABLE	Makefile	/^EXECUTABLE=boxmover$/;"	m
+EntityID	EntityManager.h	/^	typedef unsigned int EntityID ;$/;"	t	namespace:arcadia
+EntityManager	EntityManager.cpp	/^	EntityManager::EntityManager() {$/;"	f	class:arcadia::EntityManager
+EntityManager	EntityManager.h	/^	class EntityManager {$/;"	c	namespace:arcadia
+LIBS	Makefile	/^LIBS=`sdl2-config --libs`$/;"	m
+OBJECTS	Makefile	/^OBJECTS=Vector2D.o EntityManager.o System.o RenderSystem.o MovementSystem.o InputSystem.o Game.o $/;"	m
+System	System.cpp	/^	System::System() {$/;"	f	class:arcadia::System
+System	System.h	/^	class System {$/;"	c	namespace:arcadia
+Vector2D	Vector2D.cpp	/^Vector2D::Vector2D() {$/;"	f	class:Vector2D
+Vector2D	Vector2D.cpp	/^Vector2D::Vector2D(float x, float y) {$/;"	f	class:Vector2D
+Vector2D	Vector2D.h	/^class Vector2D {$/;"	c
+Vector2D_h	Vector2D.h	2;"	d
+addComponent	EntityManager.cpp	/^	bool EntityManager::addComponent(EntityID e, Component *c) {$/;"	f	class:arcadia::EntityManager
+arcadia	Component.h	/^namespace arcadia {$/;"	n
+arcadia	EntityManager.cpp	/^namespace arcadia {$/;"	n	file:
+arcadia	EntityManager.h	/^namespace arcadia {$/;"	n
+arcadia	System.cpp	/^namespace arcadia {$/;"	n	file:
+arcadia	System.h	/^namespace arcadia {$/;"	n
+arcadia_Component_h	Component.h	2;"	d
+arcadia_EntityManager_h	EntityManager.h	2;"	d
+arcadia_System_h	System.h	2;"	d
+components	EntityManager.h	/^			std::unordered_map<std::type_index, std::unordered_map<EntityID, Component *>> components;$/;"	m	class:arcadia::EntityManager
+createEntity	EntityManager.cpp	/^	EntityID EntityManager::createEntity() {$/;"	f	class:arcadia::EntityManager
+dot	Vector2D.cpp	/^float Vector2D::dot(const Vector2D &rhs) {$/;"	f	class:Vector2D
+entityList	EntityManager.h	/^			std::set<EntityID> entityList;$/;"	m	class:arcadia::EntityManager
+getComponent	EntityManager.cpp	/^	Component *EntityManager::getComponent(EntityID e, std::type_index type) {$/;"	f	class:arcadia::EntityManager
+getComponentsByEntity	EntityManager.cpp	/^	std::unordered_map<EntityID, Component *> *EntityManager::getComponentsByEntity(std::type_index type) {$/;"	f	class:arcadia::EntityManager
+getComponentsofType	EntityManager.cpp	/^	std::list<Component *> EntityManager::getComponentsofType(std::type_index type) {$/;"	f	class:arcadia::EntityManager
+getEntitiesWithComponent	EntityManager.cpp	/^	std::set<EntityID> EntityManager::getEntitiesWithComponent(std::type_index type) {$/;"	f	class:arcadia::EntityManager
+killEntity	EntityManager.cpp	/^	void EntityManager::killEntity(EntityID e) {$/;"	f	class:arcadia::EntityManager
+operator *	Vector2D.cpp	/^Vector2D Vector2D::operator*(const double &rhs) {$/;"	f	class:Vector2D
+operator *	Vector2D.cpp	/^Vector2D Vector2D::operator*(const float &rhs) {$/;"	f	class:Vector2D
+operator *	Vector2D.cpp	/^Vector2D Vector2D::operator*(const int &rhs) {$/;"	f	class:Vector2D
+operator *	Vector2D.cpp	/^Vector2D Vector2D::operator*(const unsigned int &rhs) {$/;"	f	class:Vector2D
+operator *=	Vector2D.cpp	/^Vector2D &Vector2D::operator*=(const double &rhs) {$/;"	f	class:Vector2D
+operator *=	Vector2D.cpp	/^Vector2D &Vector2D::operator*=(const float &rhs) {$/;"	f	class:Vector2D
+operator *=	Vector2D.cpp	/^Vector2D &Vector2D::operator*=(const int &rhs) {$/;"	f	class:Vector2D
+operator *=	Vector2D.cpp	/^Vector2D &Vector2D::operator*=(const unsigned int &rhs) {$/;"	f	class:Vector2D
+operator +	Vector2D.cpp	/^Vector2D Vector2D::operator+(const Vector2D &rhs) {$/;"	f	class:Vector2D
+operator +=	Vector2D.cpp	/^Vector2D &Vector2D::operator+=(const Vector2D &rhs) {$/;"	f	class:Vector2D
+operator -	Vector2D.cpp	/^Vector2D Vector2D::operator-(const Vector2D &rhs) {$/;"	f	class:Vector2D
+operator -=	Vector2D.cpp	/^Vector2D &Vector2D::operator-=(const Vector2D &rhs) {$/;"	f	class:Vector2D
+operator =	Vector2D.cpp	/^Vector2D &Vector2D::operator=(const Vector2D &rhs) {$/;"	f	class:Vector2D
+perpendicular	Vector2D.cpp	/^Vector2D Vector2D::perpendicular() {$/;"	f	class:Vector2D
+removeComponent	EntityManager.cpp	/^	bool EntityManager::removeComponent(EntityID e, std::type_index type) {$/;"	f	class:arcadia::EntityManager
+toString	Vector2D.cpp	/^string Vector2D::toString() {$/;"	f	class:Vector2D
+update	System.cpp	/^	void System::update(uint32_t delta) {$/;"	f	class:arcadia::System
+x	Vector2D.h	/^		float x;$/;"	m	class:Vector2D
+y	Vector2D.h	/^		float y;$/;"	m	class:Vector2D
+~Component	Component.h	/^		virtual ~Component() {};$/;"	f	class:arcadia::Component
+~EntityManager	EntityManager.cpp	/^	EntityManager::~EntityManager() {$/;"	f	class:arcadia::EntityManager
+~System	System.cpp	/^	System::~System() {$/;"	f	class:arcadia::System
