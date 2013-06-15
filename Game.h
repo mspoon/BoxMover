@@ -1,6 +1,8 @@
 #ifndef Game_h
 #define Game_h
 
+#include "SDL2/SDL.h"
+
 class Game {
 	public:
 		Game();
@@ -17,6 +19,9 @@ class Game {
 
 		int scrWidth,scrHeight;
 		bool running;
+
+		SDL_Window *window;
+		SDL_Renderer *renderer;
 };
 
 #endif

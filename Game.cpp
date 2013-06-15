@@ -34,12 +34,39 @@ bool Game::execute() {
 }
 
 bool Game::init() {
-	// TODO: Add initialzation code here
-	return false;
+	// Initialize SDL and create window
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+		return false;
+
+	window = SDL_CreateWindow("BoxMover",
+									  SDL_WINDOWPOS_CENTERED,
+									  SDL_WINDOWPOS_CENTERED,
+									  scrWidth, scrHeight,
+									  SDL_WINDOW_SHOWN);
+
+	if (window == nullptr)
+		return false;
+
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
+	if (renderer == nullptr)
+		return false;
+
+	SDL_RenderPresent(renderer);
+
+	return true;
 }
 
 void Game::event() {
-	// TODO: Add event handling code here
+	SDL_Event event;
+
+	while (SDL_PollEvent(&event)) {
+		switch (event.type) {
+			case SDL_QUIT:
+				running = false;
+				break;
+		}
+	}
 }
 
 void Game::loop() {
@@ -51,5 +78,11 @@ void Game::render() {
 }
 
 void Game:: cleanup() {
-	// TODO: Clean up your mess!
+	if (renderer != nullptr)
+		SDL_DestroyRenderer(renderer);
+
+	if (window != nullptr)
+		SDL_DestroyWindow(window);
+
+	SDL_Quit();
 }
