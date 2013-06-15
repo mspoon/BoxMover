@@ -38,11 +38,7 @@ bool Game::init() {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		return false;
 
-	window = SDL_CreateWindow("BoxMover",
-									  SDL_WINDOWPOS_CENTERED,
-									  SDL_WINDOWPOS_CENTERED,
-									  scrWidth, scrHeight,
-									  SDL_WINDOW_SHOWN);
+	window = SDL_CreateWindow("BoxMover", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, scrWidth, scrHeight, SDL_WINDOW_SHOWN);
 
 	if (window == nullptr)
 		return false;
@@ -65,6 +61,12 @@ void Game::event() {
 			case SDL_QUIT:
 				running = false;
 				break;
+			case SDL_KEYDOWN:
+				switch (event.key.keysym.sym) {
+					case SDLK_ESCAPE:
+						running = false;
+						break;
+				}
 		}
 	}
 }
