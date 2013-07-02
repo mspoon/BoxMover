@@ -2,6 +2,8 @@
 #define Game_h
 
 #include "SDL2/SDL.h"
+#include "EntityManager.h"
+#include "RenderSystem.h"
 
 class Game {
 	public:
@@ -22,6 +24,12 @@ class Game {
 
 		SDL_Window *window;
 		SDL_Renderer *renderer;
+
+		EntityManager *em;
+		RenderSystem *renderSystem;
+
+		uint32_t dt;
+		uint32_t lastTime;
 };
 
 #endif

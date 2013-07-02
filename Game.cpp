@@ -17,12 +17,20 @@ Game::Game() {
 }
 
 Game::~Game() {
+	// Failsafe
+	cleanup();
 }
 
 bool Game::execute() {
+	lastTime = SDL_GetTicks();
+
 	running = init();
 
 	while (running) {
+		uint32_t curTime = SDL_GetTicks();
+		dt = curTime - lastTime;
+		lastTime = curTime;
+
 		event();
 		loop();
 		render();
@@ -50,6 +58,14 @@ bool Game::init() {
 
 	SDL_RenderPresent(renderer);
 
+	// Create entities
+	em = new EntityManager();
+	//renderSystem = new RenderSystem(em, renderer);
+
+	EntityID e = em->createEntity();
+	em->addComponent(e, new Position(40, 40));
+	//em->addComponent(e, new Drawable(renderSystem->loadImage("SmileyFace.bmp")));
+
 	return true;
 }
 
@@ -76,15 +92,30 @@ void Game::loop() {
 }
 
 void Game::render() {
-	// TODO: Render logic goes here
+	//renderSystem->update(dt);
 }
 
 void Game:: cleanup() {
-	if (renderer != nullptr)
+	/*if (renderSystem != nullptr) {
+		delete renderSystem;
+		renderSystem = nullptr;
+	}*/
+
+	if (em != nullptr) {
+		delete em;
+		em = nullptr;
+	}
+
+	if (renderer != nullptr) {
 		SDL_DestroyRenderer(renderer);
+		renderer = nullptr;
+	}
 
-	if (window != nullptr)
+	if (window != nullptr) {
 		SDL_DestroyWindow(window);
+		window = nullptr;
 
-	SDL_Quit();
+		// Assume if window has been deleted, the SDL has been taken care of, too
+		SDL_Quit();
+	}
 }

@@ -1,6 +1,7 @@
 #include "System.h"
 
-System::System() {
+System::System(EntityManager *em) {
+	this->em = em;
 }
 
 System::~System() {

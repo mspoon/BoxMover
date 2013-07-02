@@ -3,11 +3,12 @@ LIBS=`sdl2-config --libs`
 CC=g++ $(CFLAGS)
 
 EXECUTABLE=boxmover
-OBJECTS=Game.o 
+OBJECTS=Vector2D.o System.o EntityManager.o RenderSystem.o Game.o 
 
 all: $(EXECUTABLE)
 
-debug: CC += -DDEBUG -g
+debug: clean
+debug: CC += -DDEBUG -g -O0
 debug: EXECUTABLE +=d
 debug: $(EXECUTABLE)
 
