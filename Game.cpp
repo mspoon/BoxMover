@@ -92,7 +92,7 @@ void Game::loop() {
 }
 
 void Game::render() {
-	//renderSystem->update(dt);
+	renderSystem->update(dt);
 }
 
 void Game:: cleanup() {

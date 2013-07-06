@@ -46,9 +46,9 @@ void EntityManager::killEntity(EntityID e) {
 		if (itType->second.count(e) != 0) {
 			std::cout << "\t\t\tRemoving component" << std::endl;
 			removeComponent(e, itType->first);
-			itType++;
 			std::cout << "\t\t\tComponent removed" << std::endl;
 		}
+		itType++;
 	}
 	std::cout << "\tKill entity" << std::endl;
 	entityList.erase(e);
