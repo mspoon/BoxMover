@@ -60,7 +60,7 @@ bool Game::init() {
 
 	// Create entities
 	em = new EntityManager();
-	//renderSystem = new RenderSystem(em, renderer);
+	renderSystem = new RenderSystem(em, renderer);
 
 	EntityID e = em->createEntity();
 	em->addComponent(e, new Position(40, 40));
@@ -96,10 +96,10 @@ void Game::render() {
 }
 
 void Game:: cleanup() {
-	/*if (renderSystem != nullptr) {
+	if (renderSystem != nullptr) {
 		delete renderSystem;
 		renderSystem = nullptr;
-	}*/
+	}
 
 	if (em != nullptr) {
 		delete em;

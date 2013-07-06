@@ -65,5 +65,7 @@ void RenderSystem::renderEntity(Drawable *draw, Position *pos) {
 	if (SDL_RenderCopy(renderer, draw->texture, &srcRect, &destRect) < 0)
 		std::cerr << "Error Rendering Texture: " << SDL_GetError() << std::endl;
 
+	SDL_RenderPresent(renderer);
+
 	return;
 }

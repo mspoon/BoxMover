@@ -8,9 +8,11 @@ EntityManager::EntityManager() {
 EntityManager::~EntityManager() {
 	std::set<EntityID>::iterator it = entityList.begin();
 	while (it!=entityList.end()) {
+		std::cout << "Cleaning up Entity " << *it << std::endl;
 		// We already have a function to handle safely killing the entity
 		// and dealing with component pointers.
 		killEntity(*it);
+		std::cout << "Entity killed" << std::endl;
 		it++;
 	}
 }
@@ -34,14 +36,23 @@ EntityID EntityManager::createEntity() {
 }
 
 void EntityManager::killEntity(EntityID e) {
-	std::unordered_map<std::type_index, std::unordered_map<EntityID, Component *>>::iterator itType;
+	std::cout << "Entering EntityManager::killEntity(" << e << ")" << std::endl;
+	std::map<std::type_index, std::map<EntityID, Component *>>::iterator itType;
 	itType = components.begin();
+	std::cout << "\tGot first component list" << std::endl;
 
 	while (itType != components.end()) {
-		if (itType->second.count(e) != 0)
+		std::cout << "\t\tTest if component list has entity" << std::endl;
+		if (itType->second.count(e) != 0) {
+			std::cout << "\t\t\tRemoving component" << std::endl;
 			removeComponent(e, itType->first);
+			itType++;
+			std::cout << "\t\t\tComponent removed" << std::endl;
+		}
 	}
+	std::cout << "\tKill entity" << std::endl;
 	entityList.erase(e);
+	std::cout << "Exiting EntityManager::killEntity(" << e << ")" << std::endl;
 }
 
 bool EntityManager::addComponent(EntityID e, Component *c) {
@@ -78,7 +89,7 @@ std::list<Component *> EntityManager::getComponentsofType(std::type_index type) 
 
 std::set<EntityID> EntityManager::getEntitiesWithComponent(std::type_index type) {
 	std::set<EntityID> es;
-	std::unordered_map<EntityID, Component *>::iterator it = components[type].begin();
+	std::map<EntityID, Component *>::iterator it = components[type].begin();
 	while (it != components[type].end()) {
 		es.insert(it->first);
 		it++;
@@ -87,8 +98,8 @@ std::set<EntityID> EntityManager::getEntitiesWithComponent(std::type_index type)
 	return es;
 }
 
-std::unordered_map<EntityID, Component *> *EntityManager::getComponentsByEntity(std::type_index type) {
-	std::unordered_map<EntityID, Component*> empty;
+std::map<EntityID, Component *> *EntityManager::getComponentsByEntity(std::type_index type) {
+	std::map<EntityID, Component*> empty;
 	if (components.count(type))
 		return &(components[type]);
 	else
