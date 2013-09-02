@@ -4,7 +4,7 @@
 #include "SDL2/SDL.h"
 #include "EntityManager.h"
 #include "RenderSystem.h"
-#include "Moveable.h"
+#include "MovementSystem.h"
 
 class Game {
 	public:
@@ -28,6 +28,7 @@ class Game {
 
 		EntityManager *em;
 		RenderSystem *renderSystem;
+		MovementSystem *movementSystem;
 
 		uint32_t dt;
 		uint32_t lastTime;

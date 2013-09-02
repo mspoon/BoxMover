@@ -19,6 +19,9 @@ void RenderSystem::update(uint32_t delta) {
 	if (entities.empty())
 		return;
 
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+	SDL_RenderClear(renderer);
+
 	std::set<EntityID>::iterator e;
 	for (e = entities.begin(); e != entities.end(); e++) {
 		Drawable *draw = dynamic_cast<Drawable*>(em->getComponent(*e, typeid(Drawable)));

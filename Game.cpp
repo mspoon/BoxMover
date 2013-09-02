@@ -61,11 +61,12 @@ bool Game::init() {
 	// Create entities
 	em = new EntityManager();
 	renderSystem = new RenderSystem(em, renderer);
+	movementSystem = new MovementSystem(em);
 
 	EntityID e = em->createEntity();
 	em->addComponent(e, new Position(40, 40));
 	em->addComponent(e, new Drawable(renderSystem->loadImage("SimpleSmiley.bmp")));
-	em->addComponent(e, new Moveable(1, 0));
+	em->addComponent(e, new Moveable(114, 200));
 
 	return true;
 }
@@ -89,7 +90,7 @@ void Game::event() {
 }
 
 void Game::loop() {
-	// TODO: void Game logic goes here
+	movementSystem->update(dt);
 }
 
 void Game::render() {
@@ -97,6 +98,11 @@ void Game::render() {
 }
 
 void Game:: cleanup() {
+	if (movementSystem != nullptr) {
+		delete movementSystem;
+		movementSystem = nullptr;
+	}
+
 	if (renderSystem != nullptr) {
 		delete renderSystem;
 		renderSystem = nullptr;

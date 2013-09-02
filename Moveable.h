@@ -9,14 +9,14 @@
 class Moveable : public Component {
 	public:
 		Moveable(int velX, int velY) {
-			velocity.x = velX;
-			velocity.y = velY;
+			vel.x = velX;
+			vel.y = velY;
 		}
 
-		Vector2D velocity;
+		Vector2D vel;
 
 		void print() {
-			std::cout << "\t\tVelocity: (" << velocity.x << ", " << velocity.y << ")" << std::endl;
+			std::cout << "\t\tVelocity: (" << vel.x << ", " << vel.y << ")" << std::endl;
 		}
 };
 
