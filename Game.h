@@ -4,6 +4,7 @@
 #include "SDL2/SDL.h"
 #include "EntityManager.h"
 #include "RenderSystem.h"
+#include "Moveable.h"
 
 class Game {
 	public:

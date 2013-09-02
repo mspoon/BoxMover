@@ -65,6 +65,7 @@ bool Game::init() {
 	EntityID e = em->createEntity();
 	em->addComponent(e, new Position(40, 40));
 	em->addComponent(e, new Drawable(renderSystem->loadImage("SimpleSmiley.bmp")));
+	em->addComponent(e, new Moveable(1, 0));
 
 	return true;
 }
