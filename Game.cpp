@@ -14,6 +14,12 @@ Game::Game() {
 	scrHeight = 600;
 
 	running = false;
+
+	em = nullptr;
+	movementSystem = nullptr;
+	renderSystem = nullptr;
+	renderer = nullptr;
+	window = nullptr;
 }
 
 Game::~Game() {
@@ -43,8 +49,10 @@ bool Game::execute() {
 
 bool Game::init() {
 	// Initialize SDL and create window
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+		std::cout << "SDL_Init failed: " << SDL_GetError() << std::endl;
 		return false;
+	}
 
 	window = SDL_CreateWindow("BoxMover", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, scrWidth, scrHeight, SDL_WINDOW_SHOWN);
 
