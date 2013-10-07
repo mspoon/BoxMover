@@ -18,6 +18,7 @@ Game::Game() {
 	em = nullptr;
 	movementSystem = nullptr;
 	renderSystem = nullptr;
+	inputSystem = nullptr;
 	renderer = nullptr;
 	window = nullptr;
 }
@@ -70,11 +71,13 @@ bool Game::init() {
 	em = new EntityManager();
 	renderSystem = new RenderSystem(em, renderer);
 	movementSystem = new MovementSystem(em);
+	inputSystem = new InputSystem(em);
 
 	EntityID e = em->createEntity();
 	em->addComponent(e, new Position(40, 40));
 	em->addComponent(e, new Drawable(renderSystem->loadImage("SimpleSmiley.bmp")));
-	em->addComponent(e, new Moveable(114, 200));
+	em->addComponent(e, new Moveable(0, 0));
+	em->addComponent(e, new Player());
 
 	return true;
 }
@@ -98,6 +101,7 @@ void Game::event() {
 }
 
 void Game::loop() {
+	inputSystem->update(dt);
 	movementSystem->update(dt);
 }
 
@@ -106,6 +110,11 @@ void Game::render() {
 }
 
 void Game:: cleanup() {
+	if (inputSystem != nullptr) {
+		delete inputSystem;
+		inputSystem = nullptr;
+	}
+
 	if (movementSystem != nullptr) {
 		delete movementSystem;
 		movementSystem = nullptr;

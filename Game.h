@@ -5,6 +5,7 @@
 #include "EntityManager.h"
 #include "RenderSystem.h"
 #include "MovementSystem.h"
+#include "InputSystem.h"
 
 class Game {
 	public:
@@ -29,6 +30,7 @@ class Game {
 		EntityManager *em;
 		RenderSystem *renderSystem;
 		MovementSystem *movementSystem;
+		InputSystem *inputSystem;
 
 		uint32_t dt;
 		uint32_t lastTime;
