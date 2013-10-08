@@ -79,6 +79,11 @@ bool Game::init() {
 	em->addComponent(e, new Moveable(0, 0));
 	em->addComponent(e, new Player());
 
+	e = em->createEntity();
+	em->addComponent(e, new Position(200, 200));
+	em->addComponent(e, new Drawable(renderSystem->loadImage("BlueBox.bmp")));
+	em->addComponent(e, new Moveable(0, 0));
+
 	return true;
 }
 

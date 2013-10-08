@@ -8,11 +8,11 @@ EntityManager::EntityManager() {
 EntityManager::~EntityManager() {
 	std::set<EntityID>::iterator it = entityList.begin();
 	while (it!=entityList.end()) {
-		std::cout << "Cleaning up Entity " << *it << std::endl;
+		//std::cout << "Cleaning up Entity " << *it << std::endl;
 		// We already have a function to handle safely killing the entity
 		// and dealing with component pointers.
 		killEntity(*it);
-		std::cout << "Entity killed" << std::endl;
+		//std::cout << "Entity killed" << std::endl;
 		it++;
 	}
 }
@@ -36,23 +36,23 @@ EntityID EntityManager::createEntity() {
 }
 
 void EntityManager::killEntity(EntityID e) {
-	std::cout << "Entering EntityManager::killEntity(" << e << ")" << std::endl;
+	//std::cout << "Entering EntityManager::killEntity(" << e << ")" << std::endl;
 	std::map<std::type_index, std::map<EntityID, Component *>>::iterator itType;
 	itType = components.begin();
-	std::cout << "\tGot first component list" << std::endl;
+	//std::cout << "\tGot first component list" << std::endl;
 
 	while (itType != components.end()) {
-		std::cout << "\t\tTest if component list has entity" << std::endl;
+		//std::cout << "\t\tTest if component list has entity" << std::endl;
 		if (itType->second.count(e) != 0) {
-			std::cout << "\t\t\tRemoving component" << std::endl;
+			//std::cout << "\t\t\tRemoving component" << std::endl;
 			removeComponent(e, itType->first);
-			std::cout << "\t\t\tComponent removed" << std::endl;
+			//std::cout << "\t\t\tComponent removed" << std::endl;
 		}
 		itType++;
 	}
-	std::cout << "\tKill entity" << std::endl;
+	//std::cout << "\tKill entity" << std::endl;
 	entityList.erase(e);
-	std::cout << "Exiting EntityManager::killEntity(" << e << ")" << std::endl;
+	//std::cout << "Exiting EntityManager::killEntity(" << e << ")" << std::endl;
 }
 
 bool EntityManager::addComponent(EntityID e, Component *c) {
