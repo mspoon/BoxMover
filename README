@@ -1,1 +1,40 @@
-This is a README file. I'll add more details later.
+BoxMover
+
+Just a toy project the help re-introduce myself to game development as well as
+to help flesh out my small understanding of component-entity systems.
+
+The game, itself, will be a simple Sokoban clone.
+
+Currently, the star of this project is the component-entity system. The
+framework for this consists of 3 classes:
+
+Component
+---------
+This class simply provides a base type for components to derive from. In this
+way, the system can recognize and handle all componenets as instances of the
+Component class when necessary. When a specific Component sub-type is required,
+this is handled via C++ 11's type reflection mechanisms.
+
+System
+------
+This class provides a basic framework off of which to build each of the systems
+that define the logic for the game. Currently, this class does little more than
+define the interface for a System, plus provides the storage for a pointer to
+the EntityManager object that it needs to access the relevant components.
+
+EntityManager
+-------------
+This class is the workhorse of the system, storing a list of all entity ID's
+and the collections of components assigned to those entities. This class
+provides functions to create and destry entities (including their components),
+and to add, access, and destroy an entity's components. This class is sort of
+the DBMS of the component entity system.
+
+-------------------------------------------------------------------------------
+
+All of this is tied together in the Game class, which instantiates the actual
+game itself, uses the EntityManager to create game objects, and calls each
+system in turn to perform it's relevant updates.
+
+This project can be thought of as a rough draft of a CES, and will, hopefully,
+mature over time.
