@@ -6,7 +6,7 @@ to help flesh out my small understanding of component-entity systems.
 The game, itself, will be a simple Sokoban clone.
 
 Currently, the star of this project is the component-entity system. The
-framework for this consists of 3 classes:
+framework for this consists of 4 classes:
 
 Component
 ---------
@@ -21,6 +21,14 @@ This class provides a basic framework off of which to build each of the systems
 that define the logic for the game. Currently, this class does little more than
 define the interface for a System, plus provides the storage for a pointer to
 the EntityManager object that it needs to access the relevant components.
+
+ManagedSystem
+-------------
+This class derives from System, but provides a version of update() that will
+filter entities by a set of required Components. A version of update() that
+takes the entity ID as an argument is provided to be overridden by derived
+classes. Classes can simply place their logic in this new update() method that
+will only send entities that pass the required Components filter.
 
 EntityManager
 -------------
