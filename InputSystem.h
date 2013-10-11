@@ -1,16 +1,17 @@
 #ifndef InputSystem_h
 #define InputSystem_h
 
-#include "System.h"
+#include "ManagedSystem.h"
 #include "Moveable.h"
 #include "Player.h"
 
-class InputSystem : public System {
+class InputSystem : public ManagedSystem {
 	public:
 		InputSystem(EntityManager *em);
 		~InputSystem();
 
-		void update(uint32_t delta);
+		using ManagedSystem::update;
+		void update(EntityID e, uint32_t delta);
 };
 
 #endif

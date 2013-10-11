@@ -11,20 +11,29 @@ Drawable	Drawable.h	/^		Drawable(SDL_Texture *t) {$/;"	f	class:Drawable
 Drawable	Drawable.h	/^class Drawable : public Component {$/;"	c
 Drawable_h	Drawable.h	2;"	d
 EXECUTABLE	Makefile	/^EXECUTABLE=boxmover$/;"	m
-EntityID	EntityManager.h	15;"	d
+EntityID	EntityManager.h	16;"	d
 EntityManager	EntityManager.cpp	/^EntityManager::EntityManager() {$/;"	f	class:EntityManager
 EntityManager	EntityManager.h	/^class EntityManager {$/;"	c
 Game	Game.cpp	/^Game::Game() {$/;"	f	class:Game
 Game	Game.h	/^class Game {$/;"	c
 Game_h	Game.h	2;"	d
+InputSystem	InputSystem.cpp	/^InputSystem::InputSystem(EntityManager *em) :$/;"	f	class:InputSystem
+InputSystem	InputSystem.h	/^class InputSystem : public System {$/;"	c
+InputSystem_h	InputSystem.h	2;"	d
 LIBS	Makefile	/^LIBS=`sdl2-config --libs`$/;"	m
+ManagedSystem	ManagedSystem.cpp	/^ManagedSystem::ManagedSystem(EntityManager *em) :$/;"	f	class:ManagedSystem
+ManagedSystem	ManagedSystem.h	/^class ManagedSystem : public System {$/;"	c
+ManagedSystem_h	ManagedSystem.h	2;"	d
 Moveable	Moveable.h	/^		Moveable(int velX, int velY) {$/;"	f	class:Moveable
 Moveable	Moveable.h	/^class Moveable : public Component {$/;"	c
 Moveable_h	Moveable.h	2;"	d
 MovementSystem	MovementSystem.cpp	/^MovementSystem::MovementSystem(EntityManager *em) :$/;"	f	class:MovementSystem
-MovementSystem	MovementSystem.h	/^class MovementSystem : public System {$/;"	c
+MovementSystem	MovementSystem.h	/^class MovementSystem : public ManagedSystem {$/;"	c
 MovementSystem_h	MovementSystem.h	2;"	d
-OBJECTS	Makefile	/^OBJECTS=Vector2D.o System.o EntityManager.o RenderSystem.o MovementSystem.o Game.o $/;"	m
+OBJECTS	Makefile	/^OBJECTS=Vector2D.o System.o ManagedSystem.o EntityManager.o RenderSystem.o MovementSystem.o InputSystem.o Game.o $/;"	m
+Player	Player.h	/^		Player() {};$/;"	f	class:Player
+Player	Player.h	/^class Player : public Component {$/;"	c
+Player_h	Player.h	2;"	d
 Position	Position.h	/^		Position(int x, int y) {$/;"	f	class:Position
 Position	Position.h	/^class Position : public Component {$/;"	c
 Position_h	Position.h	2;"	d
@@ -33,14 +42,15 @@ RenderSystem	RenderSystem.h	/^class RenderSystem : public System {$/;"	c
 RenderSystem_h	RenderSystem.h	2;"	d
 System	System.cpp	/^System::System(EntityManager *em) {$/;"	f	class:System
 System	System.h	/^class System {$/;"	c
+System_h	System.h	2;"	d
 Vector2D	Vector2D.cpp	/^Vector2D::Vector2D() {$/;"	f	class:Vector2D
 Vector2D	Vector2D.cpp	/^Vector2D::Vector2D(float x, float y) {$/;"	f	class:Vector2D
 Vector2D	Vector2D.h	/^class Vector2D {$/;"	c
 Vector2D_h	Vector2D.h	2;"	d
 addComponent	EntityManager.cpp	/^bool EntityManager::addComponent(EntityID e, Component *c) {$/;"	f	class:EntityManager
+addRequiredComponent	ManagedSystem.cpp	/^void ManagedSystem::addRequiredComponent(std::type_index componentType) {$/;"	f	class:ManagedSystem
 arcadia_Component_h	Component.h	2;"	d
 arcadia_EntityManager_h	EntityManager.h	2;"	d
-arcadia_System_h	System.h	2;"	d
 cleanup	Game.cpp	/^void Game:: cleanup() {$/;"	f	class:Game
 components	EntityManager.h	/^		std::map<std::type_index, std::map<EntityID, Component *>> components;$/;"	m	class:EntityManager
 createEntity	EntityManager.cpp	/^EntityID EntityManager::createEntity() {$/;"	f	class:EntityManager
@@ -55,7 +65,9 @@ getComponent	EntityManager.cpp	/^Component *EntityManager::getComponent(EntityID
 getComponentsByEntity	EntityManager.cpp	/^std::map<EntityID, Component *> *EntityManager::getComponentsByEntity(std::type_index type) {$/;"	f	class:EntityManager
 getComponentsofType	EntityManager.cpp	/^std::list<Component *> EntityManager::getComponentsofType(std::type_index type) {$/;"	f	class:EntityManager
 getEntitiesWithComponent	EntityManager.cpp	/^std::set<EntityID> EntityManager::getEntitiesWithComponent(std::type_index type) {$/;"	f	class:EntityManager
+getEntitiesWithComponents	EntityManager.cpp	/^std::vector<EntityID> EntityManager::getEntitiesWithComponents(std::vector<std::type_index> types) {$/;"	f	class:EntityManager
 init	Game.cpp	/^bool Game::init() {$/;"	f	class:Game
+inputSystem	Game.h	/^		InputSystem *inputSystem;$/;"	m	class:Game
 killEntity	EntityManager.cpp	/^void EntityManager::killEntity(EntityID e) {$/;"	f	class:EntityManager
 lastTime	Game.h	/^		uint32_t lastTime;$/;"	m	class:Game
 loadImage	RenderSystem.cpp	/^SDL_Texture *RenderSystem::loadImage(std::string filename) {$/;"	f	class:RenderSystem
@@ -79,6 +91,7 @@ p	Position.h	/^		Vector2D p;$/;"	m	class:Position
 perpendicular	Vector2D.cpp	/^Vector2D Vector2D::perpendicular() {$/;"	f	class:Vector2D
 print	Component.h	/^	virtual void print() { std::cout << "\\t\\tComponent" << std::endl; };$/;"	f	class:Component
 print	Moveable.h	/^		void print() {$/;"	f	class:Moveable
+print	Player.h	/^		void print() {$/;"	f	class:Player
 print	Position.h	/^		void print() {$/;"	f	class:Position
 removeComponent	EntityManager.cpp	/^bool EntityManager::removeComponent(EntityID e, std::type_index type) {$/;"	f	class:EntityManager
 render	Game.cpp	/^void Game::render() {$/;"	f	class:Game
@@ -86,13 +99,17 @@ renderEntity	RenderSystem.cpp	/^void RenderSystem::renderEntity(Drawable *draw, 
 renderSystem	Game.h	/^		RenderSystem *renderSystem;$/;"	m	class:Game
 renderer	Game.h	/^		SDL_Renderer *renderer;$/;"	m	class:Game
 renderer	RenderSystem.h	/^		SDL_Renderer *renderer;$/;"	m	class:RenderSystem
+requiredComponents	ManagedSystem.h	/^		std::vector<std::type_index> requiredComponents;$/;"	m	class:ManagedSystem
 running	Game.h	/^		bool running;$/;"	m	class:Game
 scrHeight	Game.h	/^		int scrWidth,scrHeight;$/;"	m	class:Game
 scrWidth	Game.h	/^		int scrWidth,scrHeight;$/;"	m	class:Game
 size	Drawable.h	/^		Vector2D size;$/;"	m	class:Drawable
 texture	Drawable.h	/^		SDL_Texture *texture;$/;"	m	class:Drawable
 toString	Vector2D.cpp	/^string Vector2D::toString() {$/;"	f	class:Vector2D
-update	MovementSystem.cpp	/^void MovementSystem::update(uint32_t delta) {$/;"	f	class:MovementSystem
+update	InputSystem.cpp	/^void InputSystem::update(uint32_t delta) {$/;"	f	class:InputSystem
+update	ManagedSystem.cpp	/^void ManagedSystem::update(EntityID e, uint32_t delta) {$/;"	f	class:ManagedSystem
+update	ManagedSystem.cpp	/^void ManagedSystem::update(uint32_t delta) {$/;"	f	class:ManagedSystem
+update	MovementSystem.cpp	/^void MovementSystem::update(EntityID e, uint32_t delta) {$/;"	f	class:MovementSystem
 update	RenderSystem.cpp	/^void RenderSystem::update(uint32_t delta) {$/;"	f	class:RenderSystem
 update	System.cpp	/^void System::update(uint32_t delta) {$/;"	f	class:System
 vel	Moveable.h	/^		Vector2D vel;$/;"	m	class:Moveable
@@ -103,6 +120,8 @@ y	Vector2D.h	/^		float y;$/;"	m	class:Vector2D
 ~Drawable	Drawable.h	/^		~Drawable() {$/;"	f	class:Drawable
 ~EntityManager	EntityManager.cpp	/^EntityManager::~EntityManager() {$/;"	f	class:EntityManager
 ~Game	Game.cpp	/^Game::~Game() {$/;"	f	class:Game
+~InputSystem	InputSystem.cpp	/^InputSystem::~InputSystem() {$/;"	f	class:InputSystem
+~ManagedSystem	ManagedSystem.cpp	/^ManagedSystem::~ManagedSystem() {$/;"	f	class:ManagedSystem
 ~MovementSystem	MovementSystem.cpp	/^MovementSystem::~MovementSystem() {$/;"	f	class:MovementSystem
 ~RenderSystem	RenderSystem.cpp	/^RenderSystem::~RenderSystem() {$/;"	f	class:RenderSystem
 ~System	System.cpp	/^System::~System() {$/;"	f	class:System
