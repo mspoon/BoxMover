@@ -105,3 +105,27 @@ std::map<EntityID, Component *> *EntityManager::getComponentsByEntity(std::type_
 	else
 		return nullptr;
 }
+
+std::vector<EntityID> EntityManager::getEntitiesWithComponents(std::vector<std::type_index> types) {
+	std::vector<EntityID> entities;
+
+	std::set<EntityID>::iterator e;
+	std::vector<std::type_index>::iterator component;
+	bool match;
+
+	// For each entity we have...
+	for ( e = entityList.begin(); e != entityList.end(); e++) {
+		match = true;
+		// Check against each requested component
+		for ( component = types.begin(); component != types.end() && match; component++) {
+			// If the entity does not have this component, it fails as a match
+			if (getComponent(*e, *component) == nullptr)
+				match = false;
+		}
+
+		if (match)
+			entities.push_back(*e);
+	}
+
+	return entities;
+}

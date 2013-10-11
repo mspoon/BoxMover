@@ -1,7 +1,8 @@
-#ifndef arcadia_System_h
-#define arcadia_System_h
+#ifndef System_h
+#define System_h
 
 #include <cstdint>
+
 #include "EntityManager.h"
 
 class System {

@@ -6,6 +6,7 @@
 #include <set>
 #include <map>
 #include <list>
+#include <vector>
 #include <typeinfo>
 #include <typeindex>
 
@@ -29,6 +30,7 @@ class EntityManager {
 		std::list<Component *> getComponentsofType(std::type_index type);
 		std::set<EntityID> getEntitiesWithComponent(std::type_index type);
 		std::map<EntityID, Component *> *getComponentsByEntity(std::type_index type);
+		std::vector<EntityID> getEntitiesWithComponents(std::vector<std::type_index> types);
 
 	private:
 		std::set<EntityID> entityList;
