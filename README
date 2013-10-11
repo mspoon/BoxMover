@@ -5,6 +5,9 @@ to help flesh out my small understanding of component-entity systems.
 
 The game, itself, will be a simple Sokoban clone.
 
+(Note: to build this game, SDL 2.0 is required, which can be downloaded
+at: http://www.libsdl.org/)
+
 Currently, the star of this project is the component-entity system. The
 framework for this consists of 4 classes:
 
