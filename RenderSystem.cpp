@@ -62,8 +62,8 @@ void RenderSystem::renderEntity(Drawable *draw, Position *pos) {
 	SDL_Rect destRect;
 	destRect.x = pos->p.x;
 	destRect.y = pos->p.y;
-	destRect.w = srcRect.w * 4;
-	destRect.h = srcRect.h * 4;
+	destRect.w = srcRect.w * draw->scale;
+	destRect.h = srcRect.h * draw->scale;
 
 	if (SDL_RenderCopy(renderer, draw->texture, &srcRect, &destRect) < 0)
 		std::cerr << "Error Rendering Texture: " << SDL_GetError() << std::endl;

@@ -75,13 +75,13 @@ bool Game::init() {
 
 	EntityID e = em->createEntity();
 	em->addComponent(e, new Position(40, 40));
-	em->addComponent(e, new Drawable(renderSystem->loadImage("SimpleSmiley.bmp")));
+	em->addComponent(e, new Drawable(renderSystem->loadImage("SimpleSmiley.bmp"), 4.0f));
 	em->addComponent(e, new Moveable(0, 0));
 	em->addComponent(e, new Player());
 
 	e = em->createEntity();
 	em->addComponent(e, new Position(200, 200));
-	em->addComponent(e, new Drawable(renderSystem->loadImage("BlueBox.bmp")));
+	em->addComponent(e, new Drawable(renderSystem->loadImage("BlueBox.bmp"), 4.0f));
 	em->addComponent(e, new Moveable(0, 0));
 
 	return true;
